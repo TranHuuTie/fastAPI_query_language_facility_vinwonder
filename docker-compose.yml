@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  fastapi:
+    build: .
+    container_name: fastapi_app_query_facility_language
+    ports:
+      - "8002:8002"  # Host:Container (chạy ở localhost:8002)
+    # volumes:
+    #   - ./app:/app

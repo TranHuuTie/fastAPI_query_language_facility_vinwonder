@@ -5,7 +5,9 @@ import pandas as pd
 app = FastAPI()
 
 # Load dữ liệu từ file
-df = pd.read_excel("/home/tiennh/FastAPI_product_vinwonder/Data_product_vinwonder.xlsx", engine="openpyxl")
+#df = pd.read_excel("/home/tiennh/FastAPI_product_vinwonder/app/Data_product_vinwonder.xlsx", engine="openpyxl")
+#Vì file Data_product_vinwonder.xlsx nằm trong ./app, đã copy toàn bộ vào /app, nên chỉ cần "Data_product_vinwonder.xlsx" là đủ.
+df = pd.read_excel("Data_product_vinwonder.xlsx", engine="openpyxl") 
 
 # Tạo enum sử dụng tên biến làm input và tên hiển thị là value
 class FacilityEnum(str, Enum):
@@ -59,7 +61,7 @@ def get_data(
     language: Language = Query("vi", description="Chọn ngôn ngữ : vi, en, zh, ko")
 ):
     # Map enum keys sang tên thật trong dữ liệu
-    facility_names = [FACILITY_MAP[f.value] for f in co_so]
+    facility_names = [FACILITY_MAP[f.value] for f in facility]
 
     # Lọc dữ liệu
     filtered_df = df[df["facility"].isin(facility_names)]
